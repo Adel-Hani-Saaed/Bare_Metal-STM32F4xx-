@@ -41,4 +41,9 @@ SECTIONS
         *(.data)
     }>SRAM AT> FLASH    
 
+    .bss :
+    {
+        *(.bss)
+    }>SRAM 
+
 }

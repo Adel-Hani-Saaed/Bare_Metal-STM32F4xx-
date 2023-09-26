@@ -34,16 +34,22 @@ SECTIONS
         *(.isr_vector)
         *(.text)
         *(.rodata)
+        _etext = . ;                  /*symbol have a last address in the .text output section*/
     }>FLASH                           /*>FLASH AT> FLASH (Vitual and load addresses are the same location in FLASH Memory)*/
 
     .data :
     {
+        _sdata = . ;                  /*symbol have a first address in the .data output section*/
         *(.data)
+        _edata = . ;                  /*symbol have a last address in the .data output section*/
     }>SRAM AT> FLASH    
 
+    /* This is used by the startup in order to initialize the .bss section */
     .bss :
     {
+        _sbss = . ;                  /*symbol have a first address in the .bss output section*/
         *(.bss)
+        _ebss = . ;                  /*symbol have a last address in the .bss output section*/
     }>SRAM 
 
 }
